@@ -1,0 +1,28 @@
+# mon-projet-quiz/.htaccess
+
+# Activer le moteur de réécriture d'URL
+RewriteEngine On
+
+# Définir le répertoire de base si votre projet n'est pas à la racine du domaine
+# EXEMPLE: Si votre site est accessible via http://localhost/mon-projet-quiz/
+# DECOMMENTEZ et ajustez la ligne suivante :
+RewriteBase /mon-projet-quiz/
+# Si votre site est accessible directement via http://localhost/ (contenu de mon-projet-quiz dans htdocs)
+# ALORS utilisez: RewriteBase /
+
+# Empêcher l'accès direct aux fichiers d'inclusion PHP (sécurité)
+RewriteRule ^includes/ - [F,L]
+
+# LIGNE À SUPPRIMER OU COMMENTER :
+# RewriteRule ^pages/errors.php - [F,L] 
+
+# Définir une page d'erreur personnalisée pour les erreurs HTTP
+# ASSUREZ-VOUS que les chemins ici correspondent à votre 'RewriteBase' si définie)
+ErrorDocument 400 /mon-projet-quiz/pages/errors.php?code=400
+ErrorDocument 401 /mon-projet-quiz/pages/errors.php?code=401
+ErrorDocument 403 /mon-projet-quiz/pages/errors.php?code=403
+ErrorDocument 404 /mon-projet-quiz/pages/errors.php?code=404
+ErrorDocument 500 /mon-projet-quiz/pages/errors.php?code=500
+
+# Empêcher le listage des répertoires (Directory Browse)
+Options -Indexes
